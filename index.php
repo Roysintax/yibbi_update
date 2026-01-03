@@ -24,11 +24,11 @@ $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch();
 
 // Social Media
-$stmt = $pdo->query("SELECT * FROM social_media WHERE is_active = 1 ORDER BY id");
+$stmt = $pdo->query("SELECT * FROM social_media WHERE is_active = 1 ORDER BY order_index");
 $socialMedia = $stmt->fetchAll();
 
 // Banners
-$stmt = $pdo->query("SELECT * FROM banners WHERE is_active = 1 ORDER BY display_order LIMIT 1");
+$stmt = $pdo->query("SELECT * FROM banners WHERE is_active = 1 ORDER BY order_index LIMIT 1");
 $banner = $stmt->fetch();
 
 // About Section
@@ -36,27 +36,27 @@ $stmt = $pdo->query("SELECT * FROM about_section LIMIT 1");
 $about = $stmt->fetch();
 
 // Features
-$stmt = $pdo->query("SELECT * FROM features WHERE is_active = 1 ORDER BY display_order");
+$stmt = $pdo->query("SELECT * FROM features ORDER BY order_index");
 $features = $stmt->fetchAll();
 
 // Services
-$stmt = $pdo->query("SELECT * FROM services WHERE is_active = 1 ORDER BY display_order");
+$stmt = $pdo->query("SELECT * FROM services");
 $services = $stmt->fetchAll();
 
-// Programs
-$stmt = $pdo->query("SELECT * FROM programs WHERE is_active = 1 ORDER BY display_order");
+// Programs (only regular type for slider)
+$stmt = $pdo->query("SELECT * FROM programs WHERE type = 'regular'");
 $programs = $stmt->fetchAll();
 
 // Faiths (Rukun Islam)
-$stmt = $pdo->query("SELECT * FROM faiths ORDER BY display_order");
+$stmt = $pdo->query("SELECT * FROM faiths ORDER BY order_index");
 $faiths = $stmt->fetchAll();
 
 // Quotes
-$stmt = $pdo->query("SELECT * FROM quotes WHERE is_active = 1 ORDER BY RAND() LIMIT 1");
+$stmt = $pdo->query("SELECT * FROM quotes ORDER BY RAND() LIMIT 1");
 $quote = $stmt->fetch();
 
 // Events
-$stmt = $pdo->query("SELECT * FROM events WHERE is_active = 1 ORDER BY event_date DESC LIMIT 4");
+$stmt = $pdo->query("SELECT * FROM events ORDER BY id DESC LIMIT 4");
 $events = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -126,7 +126,7 @@ $events = $stmt->fetchAll();
                             <ul class="social-icons lab-ul d-flex">
                                 <?php foreach ($socialMedia as $social): ?>
                                 <li>
-                                    <a href="<?php echo htmlspecialchars($social['url']); ?>"><i class="<?php echo htmlspecialchars($social['icon']); ?>"></i></a>
+                                    <a href="<?php echo htmlspecialchars($social['url']); ?>"><i class="<?php echo htmlspecialchars($social['icon_class']); ?>"></i></a>
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -268,7 +268,7 @@ $events = $stmt->fetchAll();
                     <div class="lab-item feature-item text-xs-center">
                         <div class="lab-inner">
                             <div class="lab-thumb">
-                                <img src="<?php echo htmlspecialchars($feature['icon']); ?>" alt="feature-image">
+                                <img src="<?php echo htmlspecialchars($feature['image']); ?>" alt="feature-image">
                             </div>
                             <div class="lab-content">
                                 <h5><?php echo htmlspecialchars($feature['title']); ?></h5>
@@ -307,7 +307,7 @@ $events = $stmt->fetchAll();
                                             <div class="content-top">
                                                 <div class="service-top-thumb"><img src="<?php echo htmlspecialchars($service['icon']); ?>" alt="service-icon"></div>
                                                 <div class="service-top-content">
-                                                    <span><?php echo htmlspecialchars($service['category']); ?></span>
+                                                    <span><?php echo htmlspecialchars($service['subtitle']); ?></span>
                                                     <h5><a href="#"><?php echo htmlspecialchars($service['title']); ?></a></h5>
                                                 </div>
                                             </div>
@@ -396,20 +396,20 @@ $events = $stmt->fetchAll();
                                                     <div class="lab-thumb-content">
                                                         <div class="progress-item">
                                                             <ul class="progress-item-status lab-ul d-flex justify-content-between mb-2">
-                                                                <li>Raised<span> $<?php echo number_format($program['raised_amount']); ?></span></li>
-                                                                <li>Gold<span> $<?php echo number_format($program['goal_amount']); ?></span></li>
+                                                                <li>Raised<span> <?php echo htmlspecialchars($program['raised_amount']); ?></span></li>
+                                                                <li>Gold<span> <?php echo htmlspecialchars($program['goal_amount']); ?></span></li>
                                                             </ul>
-                                                            <div class="progress-bar-wrapper progress" data-percent="<?php echo round(($program['raised_amount'] / $program['goal_amount']) * 100); ?>%">
+                                                            <div class="progress-bar-wrapper progress" data-percent="<?php echo $program['percentage']; ?>%">
                                                                 <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
                                                             </div>
                                                             <div class="progress-bar-percent d-flex align-items-center justify-content-center">
-                                                                <?php echo round(($program['raised_amount'] / $program['goal_amount']) * 100); ?> <sup>%</sup>
+                                                                <?php echo $program['percentage']; ?> <sup>%</sup>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="lab-content">
-                                                    <span><?php echo htmlspecialchars($program['category']); ?></span>
+                                                    <span><?php echo htmlspecialchars($program['subtitle']); ?></span>
                                                     <h5><a href="#"><?php echo htmlspecialchars($program['title']); ?></a></h5>
                                                 </div>
                                             </div>
@@ -486,7 +486,7 @@ $events = $stmt->fetchAll();
                                     </div>
                                     <div class="lab-content">
                                         <blockquote class="blockquote">
-                                            <p><?php echo htmlspecialchars($quote['author']); ?> Said <span>"<?php echo htmlspecialchars($quote['quote_text']); ?>"</span></p>
+                                            <p><?php echo htmlspecialchars($quote['author_name']); ?> <span>"<?php echo htmlspecialchars($quote['quote_text']); ?>"</span></p>
                                             <footer class="blockquote-footer bg-transparent"><?php echo htmlspecialchars($quote['source']); ?></footer>
                                         </blockquote>
                                     </div>
@@ -523,10 +523,10 @@ $events = $stmt->fetchAll();
                                     <h3><a href="#"><?php echo htmlspecialchars($events[0]['title']); ?></a></h3>
                                     <div class="date-count-wrapper">
                                         <ul class="lab-ul event-date">
-                                            <li><i class="icofont-calendar"></i> <span><?php echo date('F d, Y', strtotime($events[0]['event_date'])); ?></span></li>
+                                            <li><i class="icofont-calendar"></i> <span><?php echo htmlspecialchars($events[0]['date']); ?></span></li>
                                             <li><i class="icofont-location-pin"></i> <span><?php echo htmlspecialchars($events[0]['location']); ?></span></li>
                                         </ul>
-                                        <ul class="lab-ul event-count" data-date="<?php echo date('F d, Y H:i:s', strtotime($events[0]['event_date'])); ?>">
+                                        <ul class="lab-ul event-count" data-date="<?php echo htmlspecialchars($events[0]['count_down_target'] ?? ''); ?>">
                                             <li><span class="days">00</span><div class="count-text">Days</div></li>
                                             <li><span class="hours">00</span><div class="count-text">Hours</div></li>
                                             <li><span class="minutes">00</span><div class="count-text">Mins</div></li>
@@ -549,7 +549,7 @@ $events = $stmt->fetchAll();
                                             <div class="lab-content">
                                                 <h5><a href="#"><?php echo htmlspecialchars($events[$i]['title']); ?></a></h5>
                                                 <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span><?php echo date('F d, Y', strtotime($events[$i]['event_date'])); ?></span></li>
+                                                    <li><i class="icofont-calendar"></i> <span><?php echo htmlspecialchars($events[$i]['date']); ?></span></li>
                                                     <li><i class="icofont-location-pin"></i> <span><?php echo htmlspecialchars($events[$i]['location']); ?></span></li>
                                                 </ul>
                                             </div>
