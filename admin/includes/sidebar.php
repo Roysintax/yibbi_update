@@ -179,7 +179,18 @@
                 Home
             </a>
         </li>
-        <!-- Sidebar item lain sengaja dikosongkan sesuai permintaan -->
+        <li class="nav-item">
+            <a href="manage_banners.php" class="nav-link">
+                <i class="fas fa-images"></i>
+                Banners
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="edit_about_history.php" class="nav-link">
+                <i class="fas fa-history"></i>
+                About History
+            </a>
+        </li>
     </ul>
     
     <hr class="sidebar-divider">

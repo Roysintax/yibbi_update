@@ -53,7 +53,7 @@ include 'includes/header.php';
                     <p class="card-text">Kelola gambar slider, judul, dan tombol pada bagian atas halaman utama.</p>
                 </div>
                 <div class="card-footer bg-transparent border-primary">
-                    <a href="#" class="btn btn-sm btn-primary w-100 disabled">Manage Banners (Coming Soon)</a>
+                    <a href="manage_banners.php" class="btn btn-sm btn-primary w-100">Manage Banners</a>
                 </div>
             </div>
         </div>
