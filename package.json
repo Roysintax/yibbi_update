@@ -1,0 +1,19 @@
+{
+  "name": "yayasan-website",
+  "version": "1.0.0",
+  "description": "Yayasan Website with Admin Panel",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yayasan",
+    "charity",
+    "mosque"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cropperjs": "^2.0.0-rc.2"
+  }
+}

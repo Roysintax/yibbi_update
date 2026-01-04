@@ -1,26 +1,42 @@
 <!DOCTYPE html>
+<!-- Menentukan tipe dokumen sebagai HTML5 -->
 <html lang="en">
+<!-- Tag pembuka HTML dengan atribut bahasa Inggris -->
 
 <head>
+	<!-- Bagian head berisi metadata dan tautan ke file eksternal -->
 	<title>Blog Page</title>
+	<!-- Judul halaman yang akan muncul di tab browser -->
 	<meta charset="UTF-8">
+	<!-- Mengatur encoding karakter ke UTF-8 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Mengatur viewport agar responsif di perangkat mobile -->
 
 	<!-- Fav icon -->
+	<!-- Ikon favorit yang muncul di tab browser -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/images/x-icon/01.png">
 
+	<!-- Memuat file CSS untuk animasi -->
 	<link rel="stylesheet" href="assets/css/animate.css">
+	<!-- Memuat file CSS Bootstrap untuk layout responsif -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<!-- Memuat file CSS Font Awesome untuk ikon -->
 	<link rel="stylesheet" href="assets/css/all.min.css">
+	<!-- Memuat file CSS Icofont untuk ikon tambahan -->
 	<link rel="stylesheet" href="assets/css/icofont.min.css">
+	<!-- Memuat file CSS Lightcase untuk popup media -->
 	<link rel="stylesheet" href="assets/css/lightcase.css">
+	<!-- Memuat file CSS Swiper untuk slider -->
 	<link rel="stylesheet" href="assets/css/swiper.min.css">
+	<!-- Memuat file CSS utama untuk styling kustom -->
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+	<!-- Bagian body berisi konten utama halaman -->
 
 	<!-- preloader start here -->
+	<!-- Bagian preloader yang muncul sebelum halaman dimuat sepenuhnya -->
 	<div class="preloader">
 		<div class="preloader-inner">
 			<div class="preloader-icon">
@@ -30,34 +46,45 @@
 		</div>
 	</div>
 	<!-- preloader ending here -->
+	<!-- Akhir dari preloader -->
 
 
 	<!-- Header Section Starts Here -->
+	<!-- Awal bagian Header (Kepala Halaman) -->
 	<header class="header-3 pattern-1">
 		<div class="container">
+			<!-- Container untuk membatasi lebar konten -->
 			<div class="row align-items-center justify-content-center">
+				<!-- Baris (row) untuk layout grid -->
 				<div class="col-xl-3 col-12">
+					<!-- Kolom untuk logo dan menu mobile -->
 					<div class="mobile-menu-wrapper d-flex flex-wrap align-items-center justify-content-between">
+						<!-- Wrapper menu mobile -->
 						<div class="header-bar d-lg-none">
+							<!-- Tombol hamburger menu untuk tampilan mobile -->
 							<span></span>
 							<span></span>
 							<span></span>
 						</div>
 						<div class="logo">
+							<!-- Bagian Logo -->
 							<a href="index.html">
-								<img src="assets/images/logo/01.png
-                                " alt="logo">
+								<img src="assets/images/logo/01.png" alt="logo">
 							</a>
 						</div>
 						<div class="ellepsis-bar d-lg-none">
+							<!-- Tombol opsi tambahan untuk mobile -->
 							<i class="fas fa-ellipsis-h"></i>
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-9 col-12">
+					<!-- Kolom untuk informasi kontak dan navigasi -->
 					<div class="header-top">
+						<!-- Bagian atas header (informasi kontak) -->
 						<div class="header-top-area">
 							<ul class="left lab-ul">
+								<!-- Daftar kontak di sebelah kiri -->
 								<li>
 									<i class="icofont-ui-call"></i> <span>+800-123-4567 6587</span>
 								</li>
@@ -66,6 +93,7 @@
 								</li>
 							</ul>
 							<ul class="social-icons lab-ul d-flex">
+								<!-- Daftar ikon sosial media -->
 								<li>
 									<a href="#"><i class="fab fa-facebook-messenger"></i></a>
 								</li>
@@ -85,9 +113,11 @@
 						</div>
 					</div>
 					<div class="header-bottom">
+						<!-- Bagian bawah header (Menu Navigasi) -->
 						<div class="header-wrapper">
 							<div class="menu-area justify-content-between w-100">
 								<ul class="menu lab-ul">
+									<!-- Daftar menu utama -->
 									<li>
 										<a href="index.html">Home</a>
 									</li>
@@ -96,6 +126,7 @@
 									</li>
 									<li>
 										<a href="#0">Events</a>
+										<!-- Submenu Events -->
 										<ul class="submenu">
 											<li><a href="events.html">Events</a></li>
 											<li><a href="events-single.html">Events Single</a></li>
@@ -103,6 +134,7 @@
 									</li>
 									<li>
 										<a href="#0">Programs</a>
+										<!-- Submenu Programs -->
 										<ul class="submenu">
 											<li> <a href="programs.html">Programs</a></li>
 											<li><a href="program-single.html">Program Single</a></li>
@@ -110,6 +142,7 @@
 									</li>
 									<li>
 										<a href="#0">Pages</a>
+										<!-- Submenu Pages -->
 										<ul class="submenu">
 											<li>
 												<a href="gallery.html">Gallery</a>
@@ -139,6 +172,7 @@
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 								<div class="prayer-time d-none d-lg-block">
+									<!-- Tombol waktu sholat (hanya di desktop) -->
 									<a href="#" class="prayer-time-btn"><i class="icofont-clock-time"></i> Today Prayer
 										Time</a>
 								</div>
@@ -150,15 +184,20 @@
 		</div>
 	</header>
 	<!-- Header Section Ends Here-->
+	<!-- Akhir bagian Header -->
 
 
 	<!-- Page Header Section Start Here -->
+	<!-- Awal bagian Judul Halaman (Page Header) -->
 	<section class="page-header bg_img padding-tb">
 		<div class="overlay"></div>
+		<!-- Overlay gelap untuk background -->
 		<div class="container">
 			<div class="page-header-content-area">
 				<h4 class="ph-title">Blog Page</h4>
+				<!-- Judul Halaman -->
 				<ul class="lab-ul">
+					<!-- Breadumb navigasi -->
 					<li><a href="index.html">Home</a></li>
 					<li><a class="active">Blog</a></li>
 				</ul>
@@ -166,55 +205,71 @@
 		</div>
 	</section>
 	<!-- Page Header Section Ending Here -->
+	<!-- Akhir bagian Judul Halaman -->
 
 	<!-- Blog Section Start Here -->
+	<!-- Awal bagian Konten Blog -->
 	<div class="blog-section blog-page padding-tb aside-bg">
 		<div class="container">
 			<div class="section-wrapper">
 				<div class="row justify-content-center">
+					<!-- Baris utama konten -->
 					<div class="col-lg-8 col-12">
+						<!-- Kolom kiri: Daftar Artikel Blog -->
 						<article>
+							<!-- Artikel 1: Format Standar -->
 							<div class="post-item-2">
 								<div class="post-inner">
 									<div class="post-thumb">
+										<!-- Thumbnail Gambar -->
 										<a href="blog-single.html">
 											<img src="assets/images/blog/01.jpg" alt="blog">
 										</a>
 									</div>
 									<div class="post-content">
+										<!-- Konten Artikel -->
 										<a href="blog-single.html">
 											<h3>Continually proactive services</h3>
 										</a>
 										<ul class="lab-ul post-date">
-											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59 am
-												</span></li>
+											<!-- Meta data artikel -->
+											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59
+													am</span></li>
 											<li><span><i class="icofont-user"></i><a href="#">Robot Smith</a></span>
 											</li>
 											<li><span><i class="icofont-speech-comments"></i><a href="#">09
 														Comments</a></span></li>
 										</ul>
+										<!-- Ringkasan artikel -->
 										<p>It’s no secret that the digital industry is booming. from exciting startups
 											to global brands, to the new companies are reachin boomingesagencies,
-											responding to the new psblites available. however, the industry is
-											exciting fast becoming overcr.</p>
+											responding to the new psblites available. however, the industry is exciting
+											fast becoming overcr.</p>
+										<!-- Tombol Baca Selengkapnya -->
 										<a href="#" class="lab-btn">Read More</a>
 									</div>
 								</div>
 							</div>
+
+							<!-- Artikel 2: Format Slider -->
 							<div class="post-item-2">
 								<div class="post-inner">
 									<div class="post-thumb-container">
+										<!-- Container Slider Gambar -->
 										<div class="swiper-wrapper">
+											<!-- Slide 1 -->
 											<div class="swiper-slide">
 												<div class="post-img">
 													<img src="assets/images/blog/01.jpg" alt="blog">
 												</div>
 											</div>
+											<!-- Slide 2 -->
 											<div class="swiper-slide">
 												<div class="post-img">
 													<img src="assets/images/blog/02.jpg" alt="blog">
 												</div>
 											</div>
+											<!-- Slide 3 -->
 											<div class="swiper-slide">
 												<div class="post-img">
 													<img src="assets/images/blog/03.jpg" alt="blog">
@@ -222,6 +277,7 @@
 											</div>
 										</div>
 
+										<!-- Navigasi Slider -->
 										<div class="thumb-next thumb-nav"><i class="icofont-rounded-right"></i></div>
 										<div class="thumb-prev thumb-nav"><i class="icofont-rounded-left"></i></div>
 
@@ -231,8 +287,8 @@
 											<h3>Continually proactive services</h3>
 										</a>
 										<ul class="lab-ul post-date">
-											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59 am
-												</span></li>
+											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59
+													am</span></li>
 											<li><span><i class="icofont-user"></i><a href="#">Robot Smith</a></span>
 											</li>
 											<li><span><i class="icofont-speech-comments"></i><a href="#">09
@@ -240,18 +296,21 @@
 										</ul>
 										<p>It’s no secret that the digital industry is booming. from exciting startups
 											to global brands, to the new companies are reachin boomingesagencies,
-											responding to the new psblites available. however, the industry is
-											exciting fast becoming overcr.</p>
+											responding to the new psblites available. however, the industry is exciting
+											fast becoming overcr.</p>
 										<a href="#" class="lab-btn">Read More</a>
 									</div>
 								</div>
 							</div>
+
+							<!-- Artikel 3: Format Video -->
 							<div class="post-item-2">
 								<div class="post-inner">
 									<div class="post-thumb">
 										<a href="blog-single.html">
 											<img src="assets/images/blog/03.jpg" alt="blog">
 										</a>
+										<!-- Tombol Play Video -->
 										<a href="https://www.youtube.com/embed/LjEwuC6J-Uk" class="play-btn"
 											data-rel="lightcase">
 											<i class="icofont-play"></i>
@@ -263,8 +322,8 @@
 											<h3>Continually proactive services</h3>
 										</a>
 										<ul class="lab-ul post-date">
-											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59 am
-												</span></li>
+											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59
+													am</span></li>
 											<li><span><i class="icofont-user"></i><a href="#">Robot Smith</a></span>
 											</li>
 											<li><span><i class="icofont-speech-comments"></i><a href="#">09
@@ -272,16 +331,19 @@
 										</ul>
 										<p>It’s no secret that the digital industry is booming. from exciting startups
 											to global brands, to the new companies are reachin boomingesagencies,
-											responding to the new psblites available. however, the industry is
-											exciting fast becoming overcr.</p>
+											responding to the new psblites available. however, the industry is exciting
+											fast becoming overcr.</p>
 										<a href="#" class="lab-btn">Read More</a>
 									</div>
 								</div>
 							</div>
+
+							<!-- Artikel 4: Format Quote (Kutipan) -->
 							<div class="post-item-2">
 								<div class="post-inner">
 									<div class="post-thumb">
 										<blockquote class="blog-quote text-center">
+											<!-- Isi Kutipan -->
 											<div class="quotes">
 												Rapdiou Qntegrat Distrbute Supply Chains Through Markey Position Bestng
 												Chans Throug Marke Posito Bestin Practces Ieractve Fashon Sound Qources
@@ -294,8 +356,8 @@
 											<h3>Continually proactive services</h3>
 										</a>
 										<ul class="lab-ul post-date">
-											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59 am
-												</span></li>
+											<li><span><i class="icofont-ui-calendar"></i> October 9, 2019 10:59
+													am</span></li>
 											<li><span><i class="icofont-user"></i><a href="#">Robot Smith</a></span>
 											</li>
 											<li><span><i class="icofont-speech-comments"></i><a href="#">09
@@ -303,12 +365,14 @@
 										</ul>
 										<p>It’s no secret that the digital industry is booming. from exciting startups
 											to global brands, to the new companies are reachin boomingesagencies,
-											responding to the new psblites available. however, the industry is
-											exciting fast becoming overcr.</p>
+											responding to the new psblites available. however, the industry is exciting
+											fast becoming overcr.</p>
 										<a href="#" class="lab-btn">Read More</a>
 									</div>
 								</div>
 							</div>
+
+							<!-- Pagination (Navigasi Halaman) -->
 							<div class="paginations">
 								<ul class="lab-ul d-flex flex-wrap justify-content-center mb-1">
 									<li>
@@ -330,8 +394,11 @@
 							</div>
 						</article>
 					</div>
+
+					<!-- Kolom Kanan: Sidebar Widget -->
 					<div class="col-lg-4 col-md-7 col-12">
 						<aside class="ps-lg-4">
+							<!-- Widget Search (Pencarian) -->
 							<div class="widget widget-search">
 								<div class="widget-header">
 									<h5>Search Your keywords</h5>
@@ -342,6 +409,7 @@
 								</form>
 							</div>
 
+							<!-- Widget Kategori -->
 							<div class="widget widget-category">
 								<div class="widget-header">
 									<h5>Post Categories</h5>
@@ -379,11 +447,13 @@
 								</ul>
 							</div>
 
+							<!-- Widget Postingan Terbaru -->
 							<div class="widget widget-post">
 								<div class="widget-header">
 									<h5>Recent Post</h5>
 								</div>
 								<ul class="lab-ul widget-wrapper">
+									<!-- Daftar Post 1 -->
 									<li class="d-flex flex-wrap justify-content-between">
 										<div class="post-thumb">
 											<a href="blog-single.html"><img src="assets/images/product/01.jpg"
@@ -391,12 +461,12 @@
 										</div>
 										<div class="post-content ps-4">
 											<a href="blog-single.html">
-												<h6>Poor People’s Campaign
-													Our Resources</h6>
+												<h6>Poor People’s Campaign Our Resources</h6>
 											</a>
 											<p>04 February 2019</p>
 										</div>
 									</li>
+									<!-- Daftar Post 2 -->
 									<li class="d-flex flex-wrap justify-content-between">
 										<div class="post-thumb">
 											<a href="blog-single.html"><img src="assets/images/product/02.jpg"
@@ -404,12 +474,12 @@
 										</div>
 										<div class="post-content ps-4">
 											<a href="blog-single.html">
-												<h6>Boosting Social For NGO
-													And Charities </h6>
+												<h6>Boosting Social For NGO And Charities </h6>
 											</a>
 											<p>04 February 2019</p>
 										</div>
 									</li>
+									<!-- Daftar Post 3 -->
 									<li class="d-flex flex-wrap justify-content-between">
 										<div class="post-thumb">
 											<a href="blog-single.html"><img src="assets/images/product/03.jpg"
@@ -417,12 +487,12 @@
 										</div>
 										<div class="post-content ps-4">
 											<a href="blog-single.html">
-												<h6>Poor People’s Campaign
-													Our Resources</h6>
+												<h6>Poor People’s Campaign Our Resources</h6>
 											</a>
 											<p>04 February 2019</p>
 										</div>
 									</li>
+									<!-- Daftar Post 4 -->
 									<li class="d-flex flex-wrap justify-content-between">
 										<div class="post-thumb">
 											<a href="blog-single.html"><img src="assets/images/product/04.jpg"
@@ -430,8 +500,7 @@
 										</div>
 										<div class="post-content ps-4">
 											<a href="blog-single.html">
-												<h6>Boosting Social For NGO
-													And Charities </h6>
+												<h6>Boosting Social For NGO And Charities </h6>
 											</a>
 											<p>04 February 2019</p>
 										</div>
@@ -439,6 +508,7 @@
 								</ul>
 							</div>
 
+							<!-- Widget Instagram -->
 							<div class="widget widget-instagram">
 								<div class="widget-header">
 									<h5>Instagram</h5>
@@ -456,6 +526,7 @@
 								</ul>
 							</div>
 
+							<!-- Widget Arsip -->
 							<div class="widget widget-archive">
 								<div class="widget-header">
 									<h5>Our Archive</h5>
@@ -496,6 +567,7 @@
 								</ul>
 							</div>
 
+							<!-- Widget Tag Populer -->
 							<div class="widget widget-tags">
 								<div class="widget-header">
 									<h5>Our Popular tags</h5>
@@ -519,12 +591,15 @@
 		</div>
 	</div>
 	<!-- Blog Section ENding Here -->
+	<!-- Akhir bagian Konten Blog -->
 
 	<!-- Footer Section start here -->
+	<!-- Awal bagian Footer -->
 	<footer class="footer-section" style="background-image: url(assets/images/bg-images/footer-bg.png);">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row g-3 justify-content-center g-lg-0">
+					<!-- Item Footer Top 1: Telepon -->
 					<div class="col-lg-4 col-sm-6 col-12">
 						<div class="footer-top-item lab-item">
 							<div class="lab-inner">
@@ -537,6 +612,7 @@
 							</div>
 						</div>
 					</div>
+					<!-- Item Footer Top 2: Email -->
 					<div class="col-lg-4 col-sm-6 col-12">
 						<div class="footer-top-item lab-item">
 							<div class="lab-inner">
@@ -549,6 +625,7 @@
 							</div>
 						</div>
 					</div>
+					<!-- Item Footer Top 3: Lokasi -->
 					<div class="col-lg-4 col-sm-6 col-12">
 						<div class="footer-top-item lab-item">
 							<div class="lab-inner">
@@ -564,9 +641,12 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Footer Middle (Bagian Tengah Footer) -->
 		<div class="footer-middle padding-tb tri-shape-3">
 			<div class="container">
 				<div class="row">
+					<!-- Kolom 1: Tentang Kami -->
 					<div class="col-lg-4 col-md-6 col-12">
 						<div class="footer-middle-item-wrapper">
 							<div class="footer-middle-item mb-5 mb-lg-0">
@@ -574,15 +654,15 @@
 									<h5>About Hafsa</h5>
 								</div>
 								<div class="fm-item-content">
-									<p>Energistically coordinate highly efficient procesr
-										partnerships befor revolutionar growth strategie
-										improvement viaing awesome</p>
+									<p>Energistically coordinate highly efficient procesr partnerships befor
+										revolutionar growth strategie improvement viaing awesome</p>
 									<img src="assets/images/footer/footer-middle/01.jpg" alt="about-image"
 										class="footer-abt-img">
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- Kolom 2: Berita Terbaru -->
 					<div class="col-lg-4 col-md-6 col-12">
 						<div class="footer-middle-item-wrapper">
 							<div class="footer-middle-item mb-5 mb-lg-0">
@@ -590,6 +670,7 @@
 									<h5>our Recent news</h5>
 								</div>
 								<div class="fm-item-content">
+									<!-- Berita 1 -->
 									<div class="fm-item-widget lab-item">
 										<div class="lab-inner">
 											<div class="lab-thumb">
@@ -597,12 +678,13 @@
 														alt="footer-widget-img"></a>
 											</div>
 											<div class="lab-content">
-												<h6><a href="#">Enable Seamin Matera Forin And Our
-														Orthonal Create Vortals.</a></h6>
+												<h6><a href="#">Enable Seamin Matera Forin And Our Orthonal Create
+														Vortals.</a></h6>
 												<p>July 23, 2021</p>
 											</div>
 										</div>
 									</div>
+									<!-- Berita 2 -->
 									<div class="fm-item-widget lab-item">
 										<div class="lab-inner">
 											<div class="lab-thumb">
@@ -610,8 +692,8 @@
 														alt="footer-widget-img"></a>
 											</div>
 											<div class="lab-content">
-												<h6><a href="#">Dynamca Network Otuitive Catays For
-														Plagiarize Mindshare After</a></h6>
+												<h6><a href="#">Dynamca Network Otuitive Catays For Plagiarize Mindshare
+														After</a></h6>
 												<p>July 23, 2021</p>
 											</div>
 										</div>
@@ -620,6 +702,7 @@
 							</div>
 						</div>
 					</div>
+					<!-- Kolom 3: Newsletter -->
 					<div class="col-lg-4 col-md-6 col-12">
 						<div class="footer-middle-item-wrapper">
 							<div class="footer-middle-item-3 mb-5 mb-lg-0">
@@ -627,8 +710,7 @@
 									<h5>OUR NEWSLETTER</h5>
 								</div>
 								<div class="fm-item-content">
-									<p>Hafsa is a nonproﬁt organization supported
-										by community leaders</p>
+									<p>Hafsa is a nonproﬁt organization supported by community leaders</p>
 									<form>
 										<div class="form-group">
 											<input type="email" class="form-control" placeholder="Enter email">
@@ -643,6 +725,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Footer Bottom (Bagian Bawah Footer: Copyright) -->
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -658,23 +742,23 @@
 	<!-- Footer Section end here -->
 
 
-
 	<!-- scrollToTop start here -->
+	<!-- Tombol Scroll to Top (Kembali ke atas) -->
 	<a href="#" class="scrollToTop"><i class="icofont-bubble-up"></i><span class="pluse_1"></span><span
 			class="pluse_2"></span></a>
 	<!-- scrollToTop ending here -->
 
 
-
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/fontawesome.min.js"></script>
-	<script src="assets/js/waypoints.min.js"></script>
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/swiper.min.js"></script>
-	<script src="assets/js/circularProgressBar.min.js"></script>
-	<script src="assets/js/isotope.pkgd.min.js"></script>
-	<script src="assets/js/lightcase.js"></script>
-	<script src="assets/js/functions.js"></script>
+	<!-- Memuat file JavaScript Eksternal -->
+	<script src="assets/js/jquery.js"></script> <!-- Library jQuery -->
+	<script src="assets/js/fontawesome.min.js"></script> <!-- FontAwesome JS -->
+	<script src="assets/js/waypoints.min.js"></script> <!-- Waypoints JS -->
+	<script src="assets/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
+	<script src="assets/js/swiper.min.js"></script> <!-- Swiper Slider JS -->
+	<script src="assets/js/circularProgressBar.min.js"></script> <!-- Progress Bar Lingkaran -->
+	<script src="assets/js/isotope.pkgd.min.js"></script> <!-- Isotope untuk filter layout -->
+	<script src="assets/js/lightcase.js"></script> <!-- Lightcase untuk popup media -->
+	<script src="assets/js/functions.js"></script> <!-- Fungsi Kustom Utama -->
 </body>
 
 </html>

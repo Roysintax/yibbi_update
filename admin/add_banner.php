@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <i class="fas fa-cloud-upload-alt me-2"></i>Choose Image
                                 </div>
                                 <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-                                <small class="text-muted d-block mt-2">Recommended size: 1920x850px</small>
+                                <small class="text-muted d-block mt-2">Recommended size: 667x630px</small>
                             </div>
                             
                             <!-- Hidden input for cropped data -->
@@ -162,103 +162,166 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-0 bg-dark">
-                <div class="cropper-container" style="height: 500px;">
-                    <img id="cropperImage" src="" alt="To Crop" style="max-width: 100%; display: block;">
-                </div>
-                <div class="cropper-controls bg-dark p-3 text-center border-top border-secondary">
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-secondary btn-sm" id="rotateLeft" title="Rotate Left"><i class="fas fa-undo"></i></button>
-                        <button type="button" class="btn btn-secondary btn-sm" id="rotateRight" title="Rotate Right"><i class="fas fa-redo"></i></button>
-                    </div>
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-secondary btn-sm" id="zoomIn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
-                        <button type="button" class="btn btn-secondary btn-sm" id="zoomOut" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary btn-sm" id="resetCrop" title="Reset"><i class="fas fa-sync"></i> Reset</button>
-                    </div>
+                <div style="height: 500px; position: relative;">
+                    <cropper-canvas id="cropperCanvas" background style="width: 100%; height: 100%;">
+                        <cropper-image id="cropperImage" rotatable scalable zoomable translatable></cropper-image>
+                        <cropper-shade hidden></cropper-shade>
+                        <cropper-handle action="select" plain></cropper-handle>
+                        <cropper-selection id="cropperSelection" initial-coverage="0.8" movable resizable outlined zoomable>
+                            <cropper-grid role="grid" bordered covered></cropper-grid>
+                            <cropper-crosshair centered></cropper-crosshair>
+                            <cropper-handle action="move" theme-color="rgba(255, 255, 255, 0.35)"></cropper-handle>
+                            <cropper-handle action="n-resize"></cropper-handle>
+                            <cropper-handle action="e-resize"></cropper-handle>
+                            <cropper-handle action="s-resize"></cropper-handle>
+                            <cropper-handle action="w-resize"></cropper-handle>
+                            <cropper-handle action="ne-resize"></cropper-handle>
+                            <cropper-handle action="nw-resize"></cropper-handle>
+                            <cropper-handle action="se-resize"></cropper-handle>
+                            <cropper-handle action="sw-resize"></cropper-handle>
+                        </cropper-selection>
+                    </cropper-canvas>
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="zoomOut" title="Zoom Out">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="zoomIn" title="Zoom In">
+                    <i class="fas fa-search-plus"></i>
+                </button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="applyCrop">Apply Crop</button>
+                <button type="button" class="btn btn-primary" id="cropButton"><i class="fas fa-crop me-1"></i>Crop</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Cropper.js 2.0 (Installed via npm) -->
+<script src="assets/js/cropper.min.js"></script>
+
 <?php include 'includes/footer.php'; ?>
 
 <script>
+// Wait for page to fully load before initializing
 document.addEventListener('DOMContentLoaded', function() {
-    let cropper = null;
     const uploadTrigger = document.getElementById('uploadTrigger');
     const imageUpload = document.getElementById('imageUpload');
+    const cropperCanvas = document.getElementById('cropperCanvas');
     const cropperImage = document.getElementById('cropperImage');
+    const cropperSelection = document.getElementById('cropperSelection');
     const croppedImageData = document.getElementById('croppedImageData');
     const previewImg = document.getElementById('previewImg');
     const placeholderImg = document.getElementById('placeholderImg');
+    const cropButton = document.getElementById('cropButton');
     let cropperModal = null;
-
-    if (uploadTrigger && imageUpload) {
+    
+    // Initialize modal after Bootstrap is available
+    if (typeof bootstrap !== 'undefined') {
+        cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
+    }
+    
+    // Click handler for upload trigger
+    if (uploadTrigger) {
         uploadTrigger.addEventListener('click', function() {
             imageUpload.click();
         });
-
+    }
+    
+    // Handle file selection
+    if (imageUpload) {
         imageUpload.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
+                // Validate file type
                 if (!file.type.match('image.*')) {
-                    alert('Please upload an image file only.');
+                    alert('Hanya file gambar yang diperbolehkan!');
                     return;
                 }
+                
                 const reader = new FileReader();
                 reader.onload = function(event) {
+                    // Set the image source for cropper
                     cropperImage.src = event.target.result;
+                    
+                    // Wait a bit for image to load, then setup
+                    setTimeout(function() {
+                        // Fit image to canvas (center and contain)
+                        if (cropperImage) {
+                            cropperImage.$center('contain');
+                        }
+                        
+                        // Set aspect ratio and center selection
+                        if (cropperSelection) {
+                            cropperSelection.setAttribute('aspect-ratio', 667 / 630);
+                            cropperSelection.$center('contain');
+                        }
+                    }, 100);
+                    
+                    // Show modal
                     if (!cropperModal && typeof bootstrap !== 'undefined') {
                         cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
                     }
-                    if (cropperModal) cropperModal.show();
-                    
-                    document.getElementById('cropperModal').addEventListener('shown.bs.modal', function() {
-                        if (cropper) cropper.destroy();
-                        cropper = new Cropper(cropperImage, {
-                            aspectRatio: 667 / 630, // Fixed Banner Ratio
-                            viewMode: 1,
-                            autoCropArea: 0.9,
-                            responsive: true
-                        });
-                    }, { once: true });
+                    if (cropperModal) {
+                        cropperModal.show();
+                    }
                 };
                 reader.readAsDataURL(file);
             }
         });
     }
-
-    // Cropper Controls
-    document.getElementById('rotateLeft').addEventListener('click', () => { if(cropper) cropper.rotate(-45); });
-    document.getElementById('rotateRight').addEventListener('click', () => { if(cropper) cropper.rotate(45); });
-    document.getElementById('zoomIn').addEventListener('click', () => { if(cropper) cropper.zoom(0.1); });
-    document.getElementById('zoomOut').addEventListener('click', () => { if(cropper) cropper.zoom(-0.1); });
-    document.getElementById('resetCrop').addEventListener('click', () => { if(cropper) cropper.reset(); });
-
-    document.getElementById('applyCrop').addEventListener('click', function() {
-        if (cropper) {
-            const canvas = cropper.getCroppedCanvas({
-                width: 667,
-                height: 630,
-                fillColor: '#fff'
-            });
-            const base64 = canvas.toDataURL('image/png');
-            croppedImageData.value = base64;
-            
-            // Show preview
-            previewImg.src = base64;
-            previewImg.style.display = 'block';
-            placeholderImg.style.display = 'none';
-            
-            if (cropperModal) cropperModal.hide();
-        }
-    });
+    
+    // Zoom In Button
+    const zoomInBtn = document.getElementById('zoomIn');
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', function() {
+            if (cropperImage) {
+                cropperImage.$zoom(0.1);
+            }
+        });
+    }
+    
+    // Zoom Out Button
+    const zoomOutBtn = document.getElementById('zoomOut');
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', function() {
+            if (cropperImage) {
+                cropperImage.$zoom(-0.1);
+            }
+        });
+    }
+    
+    // Crop Button Handler
+    if (cropButton) {
+        cropButton.addEventListener('click', async function() {
+            if (cropperSelection && cropperCanvas) {
+                try {
+                    // Get cropped canvas from selection
+                    const croppedCanvas = await cropperSelection.$toCanvas({
+                        width: 667,
+                        height: 630,
+                        fillColor: '#fff'
+                    });
+                    
+                    // Convert to base64
+                    const base64 = croppedCanvas.toDataURL('image/png');
+                    croppedImageData.value = base64;
+                    
+                    // Update preview
+                    previewImg.src = base64;
+                    previewImg.style.display = 'block';
+                    placeholderImg.style.display = 'none';
+                    
+                    // Hide modal
+                    if (cropperModal) {
+                        cropperModal.hide();
+                    }
+                } catch (error) {
+                    console.error('Error cropping image:', error);
+                    alert('Terjadi kesalahan saat memotong gambar.');
+                }
+            }
+        });
+    }
 });
 </script>

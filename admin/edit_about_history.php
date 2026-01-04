@@ -385,8 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (cropper) {
                 const canvas = cropper.getCroppedCanvas({
                     width: 426,
-                    height: 553,
-                    fillColor: '#fff'
+                    height: 553
                 });
                 
                 // Convert to base64
