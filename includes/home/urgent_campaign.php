@@ -23,7 +23,7 @@
                                 <li>Gold<span> $34,900</span></li>
                             </ul>
                         </div>
-                        <a href="#" class="lab-btn">Donate Now <i class="icofont-heart-alt"></i></a>
+                        <a href="donate.php" class="lab-btn">Donate Now <i class="icofont-heart-alt"></i></a>
                     </div>
                 </div>
             </div>

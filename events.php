@@ -1,6 +1,6 @@
 <?php
 // Settings (untuk informasi header & footer)
-require_once 'admin/config/database.php';
+require_once 'config/database.php';
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch();
 
@@ -8,8 +8,13 @@ $settings = $stmt->fetch();
 $stmt = $pdo->query("SELECT * FROM social_media WHERE is_active = 1 ORDER BY order_index");
 $socialMedia = $stmt->fetchAll();
 
-// TODO: Query untuk events dari database (saat ini masih static)
-// Untuk sementara, data events masih hardcoded di HTML sampai tabel events dibuat
+// Featured Event (for top section)
+$stmt = $pdo->query("SELECT * FROM events WHERE is_active = 1 AND is_featured = 1 ORDER BY event_date ASC LIMIT 1");
+$featuredEvent = $stmt->fetch();
+
+// All Events
+$stmt = $pdo->query("SELECT * FROM events WHERE is_active = 1 ORDER BY event_date ASC");
+$events = $stmt->fetchAll();
 ?>
 <?php include 'includes/header.php'; ?>
 
@@ -42,158 +47,67 @@ $socialMedia = $stmt->fetchAll();
                 </div>
                 <div class="col-12">
                     <div class="event-content">
+                        <?php if ($featuredEvent): ?>
                         <div class="event-top tri-shape-2 pattern-2">
                             <div class="event-top-thumb">
-                                <img src="assets/images/event/01.jpg" alt="Upcoming-event">
+                                <a href="events-single.php?id=<?php echo $featuredEvent['id']; ?>">
+                                    <img src="<?php echo htmlspecialchars($featuredEvent['image']); ?>" alt="Upcoming-event">
+                                </a>
                             </div>
                             <div class="event-top-content">
                                 <div class="event-top-content-wrapper">
-                                    <h3><a href="#">Helping Hands For Poor People
-                                            Marriage Event</a> </h3>
+                                    <h3><a href="events-single.php?id=<?php echo $featuredEvent['id']; ?>"><?php echo htmlspecialchars($featuredEvent['title']); ?></a></h3>
                                     <div class="date-count-wrapper">
                                         <ul class="lab-ul event-date">
-                                            <li><i class="icofont-calendar"></i> <span>December 24,2021</span></li>
-                                            <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                    States</span></li>
+                                            <li><i class="icofont-calendar"></i> <span><?php echo date('F d, Y', strtotime($featuredEvent['event_date'])); ?></span></li>
+                                            <li><i class="icofont-location-pin"></i> <span><?php echo htmlspecialchars($featuredEvent['location'] ?? 'TBD'); ?></span></li>
                                         </ul>
-                                        <ul class="lab-ul event-count" data-date="July 05, 2021 21:14:01">
+                                        <ul class="lab-ul event-count" data-date="<?php echo date('F d, Y H:i:s', strtotime($featuredEvent['event_date'])); ?>">
                                             <li>
-                                                <span class="days">34</span>
+                                                <span class="days">00</span>
                                                 <div class="count-text">Days</div>
                                             </li>
                                             <li>
-                                                <span class="hours">09</span>
+                                                <span class="hours">00</span>
                                                 <div class="count-text">Hours</div>
                                             </li>
                                             <li>
-                                                <span class="minutes">32</span>
-                                                <div class="count-text">Muni</div>
+                                                <span class="minutes">00</span>
+                                                <div class="count-text">Mins</div>
                                             </li>
                                             <li>
-                                                <span class="seconds">32</span>
-                                                <div class="count-text">Seco</div>
+                                                <span class="seconds">00</span>
+                                                <div class="count-text">Secs</div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                         <div class="event-bottom">
                             <div class="row justify-content-center">
+                                <?php foreach ($events as $event): ?>
                                 <div class="col-lg-4 col-md-6 col-12">
                                     <div class="event-item lab-item mb-4">
                                         <div class="lab-inner">
                                             <div class="lab-thumb">
-                                                <img src="assets/images/event/02.jpg" alt="event-image">
+                                                <a href="events-single.php?id=<?php echo $event['id']; ?>">
+                                                    <img src="<?php echo htmlspecialchars($event['image']); ?>" alt="event-image">
+                                                </a>
                                             </div>
                                             <div class="lab-content">
-                                                <h5><a href="#">If Islam Teaches Peace, Why Are
-                                                        there Radical Muslims?</a> </h5>
+                                                <h5><a href="events-single.php?id=<?php echo $event['id']; ?>"><?php echo htmlspecialchars($event['title']); ?></a></h5>
                                                 <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span>December 24,2021</span>
+                                                    <li><i class="icofont-calendar"></i> <span><?php echo date('F d, Y', strtotime($event['event_date'])); ?></span>
                                                     </li>
-                                                    <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                            States</span></li>
+                                                    <li><i class="icofont-location-pin"></i> <span><?php echo htmlspecialchars($event['location'] ?? 'TBD'); ?></span></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md col-12">
-                                    <div class="event-item lab-item mb-4">
-                                        <div class="lab-inner">
-                                            <div class="lab-thumb">
-                                                <img src="assets/images/event/03.jpg" alt="event-image">
-                                            </div>
-                                            <div class="lab-content">
-                                                <h5><a href="#">American Muslim: Choosing Remain
-                                                        Still This Ramadan</a> </h5>
-                                                <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span>December 24,2021</span>
-                                                    </li>
-                                                    <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                            States</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12">
-                                    <div class="event-item lab-item mb-4">
-                                        <div class="lab-inner">
-                                            <div class="lab-thumb">
-                                                <img src="assets/images/event/04.jpg" alt="event-image">
-                                            </div>
-                                            <div class="lab-content">
-                                                <h5><a href="#"> How To Teach Kids Ramadan
-                                                        Isn't About Food</a></h5>
-                                                <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span>December 24,2021</span>
-                                                    </li>
-                                                    <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                            States</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12">
-                                    <div class="event-item lab-item">
-                                        <div class="lab-inner">
-                                            <div class="lab-thumb">
-                                                <img src="assets/images/event/05.jpg" alt="event-image">
-                                            </div>
-                                            <div class="lab-content">
-                                                <h5><a href="#">If Islam Teaches Peace, Why Are
-                                                        there Radical Muslims?</a> </h5>
-                                                <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span>December 24,2021</span>
-                                                    </li>
-                                                    <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                            States</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md col-12">
-                                    <div class="event-item lab-item">
-                                        <div class="lab-inner">
-                                            <div class="lab-thumb">
-                                                <img src="assets/images/event/06.jpg" alt="event-image">
-                                            </div>
-                                            <div class="lab-content">
-                                                <h5><a href="#">American Muslim: Choosing Remain
-                                                        Still This Ramadan</a> </h5>
-                                                <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span>December 24,2021</span>
-                                                    </li>
-                                                    <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                            States</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12">
-                                    <div class="event-item lab-item">
-                                        <div class="lab-inner">
-                                            <div class="lab-thumb">
-                                                <img src="assets/images/event/07.jpg" alt="event-image">
-                                            </div>
-                                            <div class="lab-content">
-                                                <h5><a href="#"> How To Teach Kids Ramadan
-                                                        Isn't About Food</a></h5>
-                                                <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span>December 24,2021</span>
-                                                    </li>
-                                                    <li><i class="icofont-location-pin"></i> <span>New York AK United
-                                                            States</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>

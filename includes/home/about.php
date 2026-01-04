@@ -7,11 +7,11 @@
                         <div class="lab-inner">
                             <div class="lab-content">
                                 <div class="header-title text-start m-0">
-                                    <h5><?php echo htmlspecialchars($about['title'] ?? 'About Our History'); ?></h5>
-                                    <h2 class="mb-0"><?php echo htmlspecialchars($about['heading'] ?? 'Islamic Center For Muslims To Achieve Spiritual Goals'); ?></h2>
+                                    <h5><?php echo htmlspecialchars($about['subtitle'] ?? 'About Our History'); ?></h5>
+                                    <h2 class="mb-0"><?php echo htmlspecialchars($about['title'] ?? 'Islamic Center For Muslims To Achieve Spiritual Goals'); ?></h2>
                                 </div>
-                                <h5 class="my-4"><?php echo htmlspecialchars($about['subheading'] ?? 'Our Promise To Uphold The Trust Placed.'); ?></h5>
-                                <p><?php echo $about['description'] ?? 'Lorem ipsum dolor sit, amet consectetur adipisicing elit...'; ?></p>
+                                <h5 class="my-4"><?php echo htmlspecialchars($about['achievements_title'] ?? 'Our Promise To Uphold The Trust Placed.'); ?></h5>
+                                <?php echo $about['description'] ?? 'Lorem ipsum dolor sit, amet consectetur adipisicing elit...'; ?>
                                 <a href="<?php echo htmlspecialchars($about['button_link'] ?? '#'); ?>" class="lab-btn mt-4"><?php echo htmlspecialchars($about['button_text'] ?? 'Ask About Islam'); ?> <i class="icofont-heart-alt"></i></a>
                             </div>
                         </div>

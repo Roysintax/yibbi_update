@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once 'auth_check.php';
 include 'includes/header.php';
 include 'includes/sidebar.php';
 
@@ -16,11 +16,9 @@ if (!is_dir($uploadDir)) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = 1; // Assuming we are editing the first/only record
     $title = $conn->real_escape_string($_POST['title']);
-    $heading = $conn->real_escape_string($_POST['heading']);
-    $subheading = $conn->real_escape_string($_POST['subheading']);
+    $subtitle = $conn->real_escape_string($_POST['subtitle']);
+    $achievements_title = $conn->real_escape_string($_POST['achievements_title']);
     $description = $conn->real_escape_string($_POST['description']);
-    $button_text = $conn->real_escape_string($_POST['button_text']);
-    $button_link = $conn->real_escape_string($_POST['button_link']);
     
     // Handle cropped image upload
     $image = isset($_POST['current_image']) ? $_POST['current_image'] : '';
@@ -46,13 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     if (empty($error)) {
-        $sql = "UPDATE about_section SET 
+        $sql = "UPDATE about_history SET 
                 title='$title', 
-                heading='$heading', 
-                subheading='$subheading', 
+                subtitle='$subtitle', 
                 description='$description', 
-                button_text='$button_text', 
-                button_link='$button_link',
+                achievements_title='$achievements_title',
                 image='$image'
                 WHERE id=$id";
 
@@ -65,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Fetch Data
-$sql = "SELECT * FROM about_section WHERE id=1";
+$sql = "SELECT * FROM about_history WHERE id=1";
 $result = $conn->query($sql);
 $data = $result->fetch_assoc();
 ?>
@@ -106,31 +102,22 @@ $data = $result->fetch_assoc();
             <form method="POST" action="" id="aboutForm">
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <label for="title" class="form-label">Section Title (Small Top)</label>
+                        <label for="title" class="form-label">Title (Main)</label>
                         <input type="text" class="form-control" id="title" name="title" value="<?php echo isset($data['title']) ? htmlspecialchars($data['title']) : ''; ?>" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="subheading" class="form-label">Sub Heading (Highlight)</label>
-                        <input type="text" class="form-control" id="subheading" name="subheading" value="<?php echo isset($data['subheading']) ? htmlspecialchars($data['subheading']) : ''; ?>">
+                        <label for="subtitle" class="form-label">Subtitle (Small/Date)</label>
+                        <input type="text" class="form-control" id="subtitle" name="subtitle" value="<?php echo isset($data['subtitle']) ? htmlspecialchars($data['subtitle']) : ''; ?>">
                     </div>
                     
                     <div class="col-12">
-                        <label for="heading" class="form-label">Main Heading</label>
-                        <input type="text" class="form-control" id="heading" name="heading" value="<?php echo isset($data['heading']) ? htmlspecialchars($data['heading']) : ''; ?>" required>
+                         <label for="achievements_title" class="form-label">Achievements Title</label>
+                        <input type="text" class="form-control" id="achievements_title" name="achievements_title" value="<?php echo isset($data['achievements_title']) ? htmlspecialchars($data['achievements_title']) : ''; ?>">
                     </div>
 
                     <div class="col-12">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="5" required><?php echo isset($data['description']) ? htmlspecialchars($data['description']) : ''; ?></textarea>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="button_text" class="form-label">Button Text</label>
-                        <input type="text" class="form-control" id="button_text" name="button_text" value="<?php echo isset($data['button_text']) ? htmlspecialchars($data['button_text']) : ''; ?>">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="button_link" class="form-label">Button Link</label>
-                        <input type="text" class="form-control" id="button_link" name="button_link" value="<?php echo isset($data['button_link']) ? htmlspecialchars($data['button_link']) : '#'; ?>">
                     </div>
 
                     <!-- Image Upload Section -->
@@ -299,8 +286,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         if (typeof Cropper !== 'undefined') {
                             cropper = new Cropper(cropperImage, {
-                                aspectRatio: 426 / 553, // Fixed aspect ratio sesuai template
-                                viewMode: 2,
+                                aspectRatio: 1, // Circle requires 1:1 aspect ratio
+                                viewMode: 1,
                                 autoCropArea: 0.9,
                                 responsive: true,
                                 guides: true,
@@ -315,6 +302,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Add CSS for Circular Crop View
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .cropper-view-box,
+        .cropper-face {
+            border-radius: 50%;
+        }
+    `;
+    document.head.appendChild(style);
     
     // Rotate Left
     const rotateLeftBtn = document.getElementById('rotateLeft');
@@ -384,8 +381,8 @@ document.addEventListener('DOMContentLoaded', function() {
         applyCropBtn.addEventListener('click', function() {
             if (cropper) {
                 const canvas = cropper.getCroppedCanvas({
-                    width: 426,
-                    height: 553
+                    width: 500,
+                    height: 500
                 });
                 
                 // Convert to base64

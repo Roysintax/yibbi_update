@@ -2,15 +2,7 @@
 // ========================================
 // Konfigurasi Database PDO
 // ========================================
-$host = 'localhost';
-$dbname = 'yibbi_db';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+require_once 'config/database.php';
 
     // ========================================
     // Mengambil Data dari Database
@@ -22,21 +14,32 @@ try {
     $stmt = $pdo->query("SELECT * FROM banners WHERE is_active = 1 ORDER BY order_index LIMIT 1");
     $banner = $stmt->fetch();
 
-    // About Section
-    $stmt = $pdo->query("SELECT * FROM about_section LIMIT 1");
+    // About Section (Now using About History)
+    $stmt = $pdo->query("SELECT * FROM about_history LIMIT 1");
     $about = $stmt->fetch();
 
     // Features
-    $stmt = $pdo->query("SELECT * FROM features ORDER BY order_index");
+    $stmt = $pdo->query("SELECT * FROM features WHERE is_active = 1 ORDER BY display_order ASC");
     $features = $stmt->fetchAll();
 
     // Services
-    $stmt = $pdo->query("SELECT * FROM services");
+    $stmt = $pdo->query("SELECT * FROM services WHERE is_active = 1 ORDER BY display_order ASC");
     $services = $stmt->fetchAll();
 
     // Programs (only regular type for slider)
     $stmt = $pdo->query("SELECT * FROM programs WHERE type = 'regular'");
     $programs = $stmt->fetchAll();
+    
+    // Calculate percentage for each program
+    foreach ($programs as &$program) {
+        if ($program['target_amount'] > 0) {
+            $program['percentage'] = round(($program['amount_raised'] / $program['target_amount']) * 100);
+        } else {
+            $program['percentage'] = 0;
+        }
+    }
+    unset($program); // Break reference
+
 
     // Faiths (Rukun Islam)
     $stmt = $pdo->query("SELECT * FROM faiths ORDER BY order_index");
@@ -50,12 +53,8 @@ try {
     $stmt = $pdo->query("SELECT * FROM events ORDER BY id DESC LIMIT 4");
     $events = $stmt->fetchAll();
 
-} catch (PDOException $e) {
-    // Jika terjadi error (koneksi atau query), arahkan ke 404.php
-    http_response_code(404); // Set response code 404
-    include '404.php';
-    exit;
-}
+
+
 ?>
 
 <!-- Include Header -->

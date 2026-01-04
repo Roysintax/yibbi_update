@@ -1,6 +1,10 @@
 <?php
+// ========================================
+// Konfigurasi Database PDO & Settings
+// ========================================
+require_once 'config/database.php';
+
 // Settings (untuk informasi header & footer)
-require_once 'admin/config/database.php';
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch();
 
@@ -40,72 +44,16 @@ $contactInfo = $stmt->fetchAll();
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <article class="contact-form-wrapper">
-                            <div class="contact-form">
-                                <h4><?php echo htmlspecialchars($contactSettings['form_title'] ?? "Don't Be A Stranger Just Say Hello."); ?></h4>
-                                <p class="mb-5"><?php echo htmlspecialchars($contactSettings['form_description'] ?? 'We do fast phone repair...'); ?></p>
-                                <form action="#" method="POST" id="commentform" class="comment-form">
-                                    <input type="text" name="name" class="" placeholder="Name*">
-                                    <input type="email" name="email" class="" placeholder="Email*">
-                                    <input type="text" name="subject" class="" placeholder="Subject*">
-                                    <!-- Removed duplicate name/email inputs found in original -->
-                                    <textarea name="message" id="role" cols="30" rows="9"
-                                        placeholder="Message*"></textarea>
-                                    <button type="submit" class="lab-btn">
-                                        <span>Send Our Message</span>
-                                    </button>
-                                </form>
-                            </div>
-                        </article>
+                        <?php include 'includes/contact/contact-form.php'; ?>
                     </div>
                     <div class="col-lg-4">
-                        <div class="contact-info-wrapper">
-                            <div class="contact-info-title">
-                                <h5>Get Information</h5>
-                                <p>Our Contact information Details and
-                                    Follow us on social media</p>
-                            </div>
-                            <div class="contact-info-content">
-                                <?php if (count($contactInfo) > 0): ?>
-                                    <?php foreach($contactInfo as $info): ?>
-                                    <div class="contact-info-item">
-                                        <div class="contact-info-inner">
-                                            <div class="contact-info-thumb">
-                                                <img src="<?php echo htmlspecialchars($info['icon']); ?>" alt="icon">
-                                            </div>
-                                            <div class="contact-info-details">
-                                                <span class="fw-bold"><?php echo htmlspecialchars($info['title']); ?></span>
-                                                <p><?php echo htmlspecialchars($info['description']); ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <!-- Fallback if no data -->
-                                    <p>No contact info available.</p>
-                                <?php endif; ?>
-                            </div>
-                        </div>
+                        <?php include 'includes/contact/contact-info.php'; ?>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="contact-bottom">
-            <div class="contac-bottom">
-                <div class="row justify-content-center g-0">
-                    <div class="col-12">
-                        <div class="location-map">
-                            <div id="map">
-                                <iframe
-                                    src="<?php echo htmlspecialchars($contactSettings['map_url'] ?? 'https://www.google.com/maps/embed?pb=...'); ?>"
-                                    allowfullscreen=""></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
+        <?php include 'includes/contact/contact-map.php'; ?>
     </div>
     <!-- Contact Us Section ENding Here -->
 

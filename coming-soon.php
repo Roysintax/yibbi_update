@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <head>
-    <title>Hafsa</title>
+    <title>Y-ibbi</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/icofont.min.css">
-    <link rel="stylesheet" href="assets/css/lightcase.css">
+    <link rel="stylesheet" hrequire_once 'config/database.php';css">
     <link rel="stylesheet" href="assets/css/swiper.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -36,7 +36,7 @@
         <div class="container">
             <div class="coming-wrapper text-center">
                 <div class="inner-logo mb-5">
-                    <a href="index.html"><img src="assets/images/logo/01.png" alt="Hafsa"></a>
+                    <a href="index.php"><img src="assets/images/logo/01.png" alt="Y-ibbi"></a>
                 </div>
                 <ul class="lab-ul event-count justify-content-center mb-4" data-date="July 31, 2021 21:14:01">
                     <li class="rounded-circle">

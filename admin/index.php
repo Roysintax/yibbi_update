@@ -1,5 +1,6 @@
 <?php
-require_once 'config/database.php';
+require_once 'auth_check.php';
+
 include 'includes/header.php';
 ?>
 
@@ -66,10 +67,10 @@ include 'includes/header.php';
                 </div>
                 <div class="card-body">
                      <?php
-                    $sql = "SELECT heading FROM about_section LIMIT 1";
+                    $sql = "SELECT title FROM about_history LIMIT 1";
                     $result = $conn->query($sql);
                     $row = $result->fetch_assoc();
-                    $heading = $row ? $row['heading'] : "Belum ada data";
+                    $heading = $row ? $row['title'] : "Belum ada data";
                     ?>
                     <h5 class="card-title">History Content</h5>
                     <p class="card-text text-truncate">"<?php echo $heading; ?>"</p>

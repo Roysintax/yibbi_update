@@ -15,8 +15,7 @@
                                     </div>
                                     <div class="lab-content">
                                         <blockquote class="blockquote">
-                                            <p><?php echo htmlspecialchars($quote['author_name']); ?> <span>"<?php echo htmlspecialchars($quote['quote_text']); ?>"</span></p>
-                                            <footer class="blockquote-footer bg-transparent"><?php echo htmlspecialchars($quote['source']); ?></footer>
+                                            <p><?php echo htmlspecialchars($quote['author']); ?> <span>"<?php echo htmlspecialchars($quote['quote_text']); ?>"</span></p>
                                         </blockquote>
                                     </div>
                                 </div>

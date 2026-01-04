@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once 'auth_check.php';
 include 'includes/header.php';
 ?>
 

@@ -1,0 +1,395 @@
+<?php
+require_once 'config/database.php';
+
+// Fetch Settings for header
+$stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
+$settings = $stmt->fetch();
+
+// Social Media for header
+$stmt = $pdo->query("SELECT * FROM social_media WHERE is_active = 1 ORDER BY order_index");
+$socialMedia = $stmt->fetchAll();
+
+// Fetch Categories
+$categories = $conn->query("SELECT * FROM gallery_categories ORDER BY display_order ASC");
+
+// Fetch Gallery Items
+$items = $conn->query("SELECT * FROM gallery_items ORDER BY created_at DESC");
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title><?php echo htmlspecialchars($settings['site_title'] ?? 'YIBBI'); ?> - Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL . htmlspecialchars($settings['favicon'] ?? 'assets/images/x-icon/01.png'); ?>">
+
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/icofont.min.css">
+    <link rel="stylesheet" href="assets/css/lightcase.css">
+    <link rel="stylesheet" href="assets/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- preloader start here -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- preloader ending here -->
+
+
+    <!-- Header Section Starts Here -->
+    <header class="header-3 pattern-1">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-3 col-12">
+                    <div class="mobile-menu-wrapper d-flex flex-wrap align-items-center justify-content-between">
+                        <div class="header-bar d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="logo">
+                            <a href="index.php">
+                                <img src="assets/images/logo/01.png" alt="logo">
+                            </a>
+                        </div>
+                        <div class="ellepsis-bar d-lg-none">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-12">
+                    <div class="header-top">
+                        <div class="header-top-area">
+                            <ul class="left lab-ul">
+                                <li>
+                                    <i class="icofont-ui-call"></i> <span>+800-123-4567 6587</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i> Beverley, New York 224 US
+                                </li>
+                            </ul>
+                            <ul class="social-icons lab-ul d-flex">
+                                <li>
+                                    <a href="#"><i class="fab fa-facebook-messenger"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fab fa-skype"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fas fa-wifi"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-bottom">
+                        <div class="header-wrapper">
+                            <div class="menu-area justify-content-between w-100">
+                                <ul class="menu lab-ul">
+                                    <li>
+                                        <a href="index.php">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="about.php">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">Events</a>
+                                        <ul class="submenu">
+                                            <li><a href="events.php">Events</a></li>
+                                            <li><a href="events-single.html">Events Single</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#0">Programs</a>
+                                        <ul class="submenu">
+                                            <li> <a href="programs.php">Programs</a></li>
+                                            <li><a href="program-single.html">Program Single</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#0">Pages</a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="gallery.php" class="active">Gallery</a>
+                                            </li>
+                                            <li>
+                                                <a href="#0">Scholars</a>
+                                                <ul class="submenu">
+                                                    <li><a href="scholar.html">Our Scholars</a></li>
+                                                    <li><a href="scholar-single.html">Scholar Single</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#0">Blog</a>
+                                                <ul class="submenu">
+                                                    <li><a href="blog.php">blog</a></li>
+                                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="sermons.html">Sermons</a></li>
+                                            <li><a href="services.html">Service</a></li>
+                                            <li><a href="404.html">404 Error</a></li>
+                                            <li><a href="coming-soon.html">Coming-soon</a></li>
+                                            <li><a href="registration.html">Registration</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                                <div class="prayer-time d-none d-lg-block">
+                                    <a href="#" class="prayer-time-btn"><i class="icofont-clock-time"></i> Today Prayer
+                                        Time</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section Ends Here-->
+
+    <!-- Page Header Section Start Here -->
+    <section class="page-header bg_img padding-tb">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="page-header-content-area">
+                <h4 class="ph-title">Muslim Festival Photos</h4>
+                <ul class="lab-ul">
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">Feature</a></li>
+                    <li><a class="active">Photos</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Page Header Section Ending Here -->
+
+    <!-- Gallary section start here-->
+    <div class="gallery-section padding-tb">
+        <div class="container">
+            <ul class="filter-button-group lab-ul d-flex justify-content-center mb-4">
+                <?php 
+                if ($categories->num_rows > 0) {
+                    while($cat = $categories->fetch_assoc()) {
+                        $activeClass = ($cat['slug'] == '*') ? 'is-checked' : '';
+                        // For count, we can query or just leave static/remove.
+                        // Ideally count items. For simplicity, removed count or count dynamically.
+                        // Let's count dynamically:
+                        $slug = $cat['slug'];
+                        if ($slug == '*') {
+                            $countSql = "SELECT COUNT(*) as count FROM gallery_items";
+                        } else {
+                            $cleanSlug = str_replace('.', '', $slug); // remove dot
+                            $countSql = "SELECT COUNT(*) as count FROM gallery_items WHERE categories LIKE '%$cleanSlug%'";
+                        }
+                        $countResult = $conn->query($countSql);
+                        $count = $countResult->fetch_assoc()['count'];
+                        
+                        echo '<li class="filter-btn '.$activeClass.'" data-filter="'.$cat['slug'].'">'.$cat['name'].' <span class="filter-item-num">'.str_pad($count, 2, '0', STR_PAD_LEFT).'</span></li>';
+                    }
+                }
+                ?>
+            </ul>
+            <div class="grid pb-15">
+                <?php 
+                if ($items->num_rows > 0) {
+                    while($item = $items->fetch_assoc()) {
+                ?>
+                <div class="grid-item <?php echo htmlspecialchars($item['categories']); ?>">
+                    <div class="grid-inner">
+                        <div class="grid-thumb">
+                            <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="gallery-img">
+                        </div>
+                        <div class="grid-content p-2">
+                            <a href="<?php echo htmlspecialchars($item['image']); ?>" data-rel="lightcase"><i
+                                    class="icofont-expand"></i></a>
+                            <h5><?php echo htmlspecialchars($item['title']); ?></h5>
+                            <p><?php echo htmlspecialchars($item['subtitle']); ?></p>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <!-- Gallary section end here-->
+
+    <!-- Footer Section start here -->
+    <footer class="footer-section" style="background-image: url(assets/images/bg-images/footer-bg.png);">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row g-3 justify-content-center g-lg-0">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="footer-top-item lab-item">
+                            <div class="lab-inner">
+                                <div class="lab-thumb">
+                                    <img src="assets/images/footer/footer-top/01.png" alt="Phone-icon">
+                                </div>
+                                <div class="lab-content">
+                                    <span>Phone Number : +88019 339 702 520</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="footer-top-item lab-item">
+                            <div class="lab-inner">
+                                <div class="lab-thumb">
+                                    <img src="assets/images/footer/footer-top/02.png" alt="email-icon">
+                                </div>
+                                <div class="lab-content">
+                                    <span>Email : admin@yibbi.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="footer-top-item lab-item">
+                            <div class="lab-inner">
+                                <div class="lab-thumb">
+                                    <img src="assets/images/footer/footer-top/03.png" alt="location-icon">
+                                </div>
+                                <div class="lab-content">
+                                    <span>Address : 30 North West New York 240</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-middle padding-tb tri-shape-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="footer-middle-item-wrapper">
+                            <div class="footer-middle-item mb-5 mb-lg-0">
+                                <div class="fm-item-title">
+                                    <h5>About Y-ibbi</h5>
+                                </div>
+                                <div class="fm-item-content">
+                                    <p class="mb-4">Energistically coordinate highly efficient procesr
+                                        partnerships befor revolutionar growth strategie
+                                        improvement</p>
+                                    <img src="assets/images/footer/footer-middle/01.jpg" alt="about-image"
+                                        class="footer-abt-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="footer-middle-item-wrapper">
+                            <div class="footer-middle-item mb-5 mb-lg-0">
+                                <div class="fm-item-title">
+                                    <h5>our Recent news</h5>
+                                </div>
+                                <div class="fm-item-content">
+                                    <div class="fm-item-widget lab-item">
+                                        <div class="lab-inner">
+                                            <div class="lab-thumb">
+                                                <a href="#"> <img src="assets/images/footer/footer-middle/02.jpg"
+                                                        alt="footer-widget-img"></a>
+                                            </div>
+                                            <div class="lab-content">
+                                                <h6><a href="#">Enable Seamin Matera Forin And Our
+                                                        Orthonal Create Vortals.</a></h6>
+                                                <p>July 23, 2021</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fm-item-widget lab-item">
+                                        <div class="lab-inner">
+                                            <div class="lab-thumb">
+                                                <a href="#"><img src="assets/images/footer/footer-middle/03.jpg"
+                                                        alt="footer-widget-img"></a>
+                                            </div>
+                                            <div class="lab-content">
+                                                <h6><a href="#">Dynamca Network Otuitive Catays For
+                                                        Plagiarize Mindshare After</a></h6>
+                                                <p>July 23, 2021</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="footer-middle-item-wrapper">
+                            <div class="footer-middle-item-3 mb-5 mb-lg-0">
+                                <div class="fm-item-title">
+                                    <h5>OUR NEWSLETTER</h5>
+                                </div>
+                                <div class="fm-item-content">
+                                    <p>Y-ibbi is a nonproﬁt organization supported
+                                        by community leaders</p>
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Enter email">
+                                        </div>
+                                        <button type="submit" class="lab-btn">Send Massage <i
+                                                class="icofont-paper-plane"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="footer-bottom-content text-center">
+                            <p>&copy;2021 <a href="index.html">Y-ibbi</a> -Best For Charity HTML Template.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section end here -->
+
+
+
+    <!-- scrollToTop start here -->
+    <a href="#" class="scrollToTop"><i class="icofont-bubble-up"></i><span class="pluse_1"></span><span
+            class="pluse_2"></span></a>
+    <!-- scrollToTop ending here -->
+
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/circularProgressBar.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/lightcase.js"></script>
+    <script src="assets/js/functions.js"></script>
+</body>
+
+</html>

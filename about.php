@@ -1,6 +1,6 @@
 <?php
 // Settings (untuk informasi header & footer)
-require_once 'admin/config/database.php';
+require_once 'config/database.php';
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch();
 
@@ -9,15 +9,21 @@ $stmt = $pdo->query("SELECT * FROM social_media WHERE is_active = 1 ORDER BY ord
 $socialMedia = $stmt->fetchAll();
 
 // About Settings
-$stmt = $pdo->query("SELECT * FROM about_settings LIMIT 1");
+$stmt = $pdo->query("SELECT * FROM about_section LIMIT 1");
 $aboutSettings = $stmt->fetch();
 
 // About History
 $stmt = $pdo->query("SELECT * FROM about_history LIMIT 1");
+// About History
+$stmt = $pdo->query("SELECT * FROM about_history LIMIT 1");
 $aboutHistory = $stmt->fetch();
 
+// About Achievements
+$stmt = $pdo->query("SELECT * FROM about_achievements ORDER BY order_index ASC");
+$aboutAchievements = $stmt->fetchAll();
+
 // About Features
-$stmt = $pdo->query("SELECT * FROM about_features ORDER BY id ASC");
+$stmt = $pdo->query("SELECT * FROM features ORDER BY display_order ASC");
 $aboutFeatures = $stmt->fetchAll();
 
 // Scholars
@@ -25,11 +31,11 @@ $stmt = $pdo->query("SELECT * FROM scholars ORDER BY id ASC");
 $scholars = $stmt->fetchAll();
 
 // Quote
-$stmt = $pdo->query("SELECT * FROM about_quote WHERE is_active = 1 LIMIT 1");
+$stmt = $pdo->query("SELECT * FROM quotes WHERE is_active = 1 LIMIT 1");
 $aboutQuote = $stmt->fetch();
 
 // Faith (Pillars of Islam)
-$stmt = $pdo->query("SELECT * FROM about_faith ORDER BY order_index ASC");
+$stmt = $pdo->query("SELECT * FROM faiths ORDER BY order_index ASC");
 $aboutFaith = $stmt->fetchAll();
 ?>
 <!-- Include Header -->
@@ -41,10 +47,10 @@ $aboutFaith = $stmt->fetchAll();
         <div class="overlay"></div>
         <div class="container">
             <div class="page-header-content-area">
-                <h4 class="ph-title"><?php echo htmlspecialchars($aboutSettings['header_title'] ?? 'About Our Hafsa'); ?></h4>
+                <h4 class="ph-title"><?php echo htmlspecialchars($aboutSettings['title'] ?? 'About Our Y-ibbi'); ?></h4>
                 <ul class="lab-ul">
                     <li><a href="index.php">Home</a></li>
-                    <li><a class="active"><?php echo htmlspecialchars($aboutSettings['header_breadcrumb'] ?? 'About'); ?></a></li>
+                    <li><a class="active">About</a></li>
                 </ul>
             </div>
         </div>
@@ -62,12 +68,12 @@ $aboutFaith = $stmt->fetchAll();
                         <div class="lab-inner">
                             <div class="lab-content">
                                 <div class="header-title text-start m-0">
-                                    <h5><?php echo htmlspecialchars($aboutHistory['sub_title'] ?? 'About Our History'); ?></h5>
-                                    <h2 class="mb-0"><?php echo htmlspecialchars($aboutHistory['main_title'] ?? 'Islamic Center...'); ?></h2>
+                                    <h5><?php echo htmlspecialchars($aboutHistory['subtitle'] ?? 'Since 1990'); ?></h5>
+                                    <h2 class="mb-0"><?php echo htmlspecialchars($aboutHistory['title'] ?? 'Our History'); ?></h2>
                                 </div>
-                                <h5 class="my-4"><?php echo htmlspecialchars($aboutHistory['highlight_text'] ?? 'Our Promise...'); ?></h5>
-                                <p><?php echo nl2br(htmlspecialchars($aboutHistory['description'] ?? '')); ?></p>
-                                <a href="<?php echo htmlspecialchars($aboutHistory['button_link'] ?? '#'); ?>" class="lab-btn mt-4"><?php echo htmlspecialchars($aboutHistory['button_text'] ?? 'Ask About Islam'); ?> <i class="icofont-heart-alt"></i></a>
+                                <h5 class="my-4"><?php echo htmlspecialchars($aboutHistory['achievements_title'] ?? 'Our Achievements'); ?></h5>
+                                <?php echo $aboutHistory['description'] ?? ''; ?>
+                                <a href="#" class="lab-btn mt-4">Ask About Islam <i class="icofont-heart-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +89,7 @@ $aboutFaith = $stmt->fetchAll();
                                         <div class="about-circle"></div>
                                     </div>
                                     <div class="about-fg-img">
-                                        <img src="<?php echo htmlspecialchars($aboutHistory['image_main'] ?? 'assets/images/about/02.png'); ?>" alt="about-image">
+                                        <img src="<?php echo htmlspecialchars($aboutHistory['image'] ?? 'assets/images/about/02.png'); ?>" alt="about-image">
                                     </div>
                                 </div>
                             </div>
@@ -98,12 +104,11 @@ $aboutFaith = $stmt->fetchAll();
     <!-- Bagian Fitur Dimulai Di Sini -->
     <section class="feature-section bg-ash padding-tb">
         <div class="container">
-        <div class="container">
             <div class="row justify-content-center">
                 <?php if ($aboutFeatures): ?>
-                    <?php foreach ($aboutFeatures as $feature): ?>
+                    <?php foreach ($aboutFeatures as $index => $feature): ?>
                     <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="lab-item feature-item text-xs-center">
+                        <div class="lab-item feature-item <?php echo $index === 0 ? 'text-xs-center' : ''; ?>">
                             <div class="lab-inner">
                                 <div class="lab-thumb">
                                     <img src="<?php echo htmlspecialchars($feature['image']); ?>" alt="feature-image">
@@ -191,9 +196,7 @@ $aboutFaith = $stmt->fetchAll();
                                     <!-- Isi Kutipan -->
                                     <div class="lab-content">
                                         <blockquote class="blockquote">
-                                            <p><?php echo htmlspecialchars($aboutQuote['quote_author'] ?? 'Unknown'); ?> <span>"<?php echo htmlspecialchars($aboutQuote['quote_text'] ?? 'No quote available.'); ?>"</span> </p>
-                                            <footer class="blockquote-footer bg-transparent"><?php echo htmlspecialchars($aboutQuote['quote_source'] ?? ''); ?>
-                                            </footer>
+                                            <p><?php echo htmlspecialchars($aboutQuote['author'] ?? 'Unknown'); ?> <span>"<?php echo htmlspecialchars($aboutQuote['quote_text'] ?? 'No quote available.'); ?>"</span> </p>
                                         </blockquote>
                                     </div>
                                 </div>
@@ -226,16 +229,16 @@ $aboutFaith = $stmt->fetchAll();
                             <?php foreach ($aboutFaith as $index => $item): ?>
                                 <?php 
                                     $isActive = $index === 0 ? 'show active' : '';
-                                    $identifier = htmlspecialchars($item['identifier']);
+                                    $identifier = 'faith-' . $item['id'];
                                 ?>
                                 <div class="tab-pane fade <?php echo $isActive; ?>" id="<?php echo $identifier; ?>" role="tabpanel" aria-labelledby="<?php echo $identifier; ?>-tab">
                                     <div class="lab-item faith-item tri-shape-1 pattern-2">
                                         <div class="lab-inner d-flex align-items-center">
                                             <div class="lab-thumb">
-                                                <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="faith-image">
+                                                <img src="<?php echo htmlspecialchars($item['icon']); ?>" alt="faith-image">
                                             </div>
                                             <div class="lab-content">
-                                                <h4><?php echo htmlspecialchars($item['title']); ?> <span>(<?php echo htmlspecialchars($item['subtitle']); ?>)</span> </h4>
+                                                <h4><?php echo htmlspecialchars($item['title']); ?></h4>
                                                 <p><?php echo htmlspecialchars($item['description']); ?></p>
                                             </div>
                                         </div>
@@ -249,7 +252,7 @@ $aboutFaith = $stmt->fetchAll();
                                 <?php 
                                     $isActiveLink = $index === 0 ? 'active' : '';
                                     $ariaSelected = $index === 0 ? 'true' : 'false';
-                                    $identifier = htmlspecialchars($item['identifier']);
+                                    $identifier = 'faith-' . $item['id'];
                                 ?>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link <?php echo $isActiveLink; ?>" id="<?php echo $identifier; ?>-tab" data-bs-toggle="pill" href="#<?php echo $identifier; ?>" role="tab" aria-controls="<?php echo $identifier; ?>" aria-selected="<?php echo $ariaSelected; ?>">

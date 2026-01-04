@@ -7,7 +7,7 @@
                     <div class="lab-item feature-item text-xs-center">
                         <div class="lab-inner">
                             <div class="lab-thumb">
-                                <img src="<?php echo htmlspecialchars($feature['image']); ?>" alt="feature-image">
+                                <img src="<?php echo htmlspecialchars($feature['image']); ?>" alt="feature-image" width="70" height="70" style="width: 70px; height: 70px; object-fit: contain;">
                             </div>
                             <div class="lab-content">
                                 <h5><?php echo htmlspecialchars($feature['title']); ?></h5>

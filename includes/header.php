@@ -11,20 +11,20 @@ $socialMedia = $stmt->fetchAll();
 <html lang="en">
 
 <head>
-    <title><?php echo htmlspecialchars($settings['site_title'] ?? 'Hafsa Home'); ?></title>
+    <title><?php echo htmlspecialchars($settings['site_title'] ?? 'Y-ibbi Home'); ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo htmlspecialchars($settings['favicon'] ?? 'assets/images/x-icon/01.png'); ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL . htmlspecialchars($settings['favicon'] ?? 'assets/images/x-icon/01.png'); ?>">
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/icofont.min.css">
-    <link rel="stylesheet" href="assets/css/lightcase.css">
-    <link rel="stylesheet" href="assets/css/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/icofont.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/lightcase.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/swiper.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style.css">
 </head>
 
 <body>
@@ -85,51 +85,40 @@ $socialMedia = $stmt->fetchAll();
                             <div class="menu-area justify-content-between w-100">
                                 <ul class="menu lab-ul">
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="about.php">About</a></li>
                                     <li>
                                         <a href="#0">Events</a>
                                         <ul class="submenu">
-                                            <li><a href="events.html">Events</a></li>
-                                            <li><a href="events-single.html">Events Single</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>events.php">Events</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#0">Programs</a>
                                         <ul class="submenu">
-                                            <li><a href="programs.html">Programs</a></li>
-                                            <li><a href="program-single.html">Program Single</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>programs.php">Programs</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#0">Blog</a>
+                                        <ul class="submenu">
+                                            <li><a href="<?php echo BASE_URL; ?>blog.php">Blog</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#0">Pages</a>
                                         <ul class="submenu">
-                                            <li><a href="gallery.html">Gallery</a></li>
-                                            <li>
-                                                <a href="#0">Scholars</a>
-                                                <ul class="submenu">
-                                                    <li><a href="scholar.html">Our Scholars</a></li>
-                                                    <li><a href="scholar-single.html">Scholar Single</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#0">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="sermons.html">Sermons</a></li>
-                                            <li><a href="services.html">Service</a></li>
-                                            <li><a href="404.html">404 Error</a></li>
-                                            <li><a href="coming-soon.html">Coming-soon</a></li>
-                                            <li><a href="registration.html">Registration</a></li>
-                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>gallery.php">Gallery</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>scholar.php">Scholars</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>donate.php">Donate</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>404.php">404 Error</a></li>
+                                            <li><a href="<?php echo BASE_URL; ?>coming-soon.php">Coming Soon</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="<?php echo BASE_URL; ?>contact.php">Contact</a></li>
+
                                 </ul>
                                 <div class="prayer-time d-none d-lg-block">
-                                    <a href="#" class="prayer-time-btn"><i class="icofont-clock-time"></i> Today Prayer Time</a>
+                                    <a href="<?php echo BASE_URL; ?>donate.php" class="prayer-time-btn"><i class="fas fa-hand-holding-heart"></i> Donate Now</a>
                                 </div>
                             </div>
                         </div>

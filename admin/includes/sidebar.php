@@ -159,13 +159,49 @@
     .dropdown-item:hover {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
+    
+    /* Dropdown Submenu Styles */
+    .nav-item .submenu {
+        list-style: none;
+        padding-left: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+    
+    .nav-item .submenu.show {
+        max-height: 500px;
+    }
+    
+    .nav-item .submenu .nav-link {
+        padding-left: 3rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .nav-item .submenu .nav-link::before {
+        content: '›';
+        position: absolute;
+        left: 2rem;
+        opacity: 0.6;
+    }
+    
+    .nav-link .dropdown-arrow {
+        float: right;
+        transition: transform 0.3s ease;
+        font-size: 0.8rem;
+    }
+    
+    .nav-link .dropdown-arrow.rotated {
+        transform: rotate(90deg);
+    }
 </style>
 
 <!-- Sidebar Menu -->
 <div class="sidebar-wrapper d-flex flex-column flex-shrink-0">
     <a href="index.php" class="sidebar-brand">
         <h4>
-            <i class="fas fa-mosque me-2"></i>Hafsa
+            <i class="fas fa-mosque me-2"></i>YIBBI
         </h4>
         <small>Admin Dashboard</small>
     </a>
@@ -173,23 +209,147 @@
     <hr class="sidebar-divider">
     
     <ul class="nav nav-pills flex-column sidebar-nav mb-auto">
+        <!-- Home with Dropdown -->
         <li class="nav-item">
-            <a href="index.php" class="nav-link active" aria-current="page">
+            <a href="#homeSubmenu" class="nav-link" data-bs-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-home"></i>
                 Home
+                <i class="fas fa-chevron-right dropdown-arrow"></i>
             </a>
+            <ul class="submenu collapse" id="homeSubmenu">
+                <li class="nav-item">
+                    <a href="manage_banners.php" class="nav-link">
+                        <i class="fas fa-images"></i>
+                        Banners (Hero Section)
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="edit_about_history.php" class="nav-link">
+                        <i class="fas fa-history"></i>
+                        About History
+                    </a>
+                </li>
+            </ul>
         </li>
+        
+        <!-- Homepage Sections Dropdown -->
         <li class="nav-item">
-            <a href="manage_banners.php" class="nav-link">
+            <a href="#homepageSubmenu" class="nav-link" data-bs-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-th-large"></i>
+                Homepage Sections
+                <i class="fas fa-chevron-right dropdown-arrow"></i>
+            </a>
+            <ul class="submenu collapse" id="homepageSubmenu">
+                <li class="nav-item">
+                    <a href="manage_features.php" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        Features
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_services.php" class="nav-link">
+                        <i class="fas fa-hands-helping"></i>
+                        Services
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_programs.php" class="nav-link">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        Programs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_events.php" class="nav-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        Events
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_quotes.php" class="nav-link">
+                        <i class="fas fa-quote-left"></i>
+                        Quotes
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
+        <!-- Blog Dropdown -->
+        <li class="nav-item">
+            <a href="#blogSubmenu" class="nav-link" data-bs-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-blog"></i>
+                Blog System
+                <i class="fas fa-chevron-right dropdown-arrow"></i>
+            </a>
+            <ul class="submenu collapse" id="blogSubmenu">
+                <li class="nav-item">
+                    <a href="manage_blog_posts.php" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        Posts
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
+        <!-- Gallery Link -->
+        <li class="nav-item">
+            <a href="manage_gallery.php" class="nav-link">
                 <i class="fas fa-images"></i>
-                Banners
+                Gallery
             </a>
         </li>
+        
+        <!-- Scholars Link -->
         <li class="nav-item">
-            <a href="edit_about_history.php" class="nav-link">
-                <i class="fas fa-history"></i>
-                About History
+            <a href="manage_scholars.php" class="nav-link">
+                <i class="fas fa-user-graduate"></i>
+                Scholars
             </a>
+        </li>
+        
+        <!-- Donations Dropdown -->
+        <li class="nav-item">
+            <a href="#donationsSubmenu" class="nav-link" data-bs-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-hand-holding-heart"></i>
+                Donations
+                <i class="fas fa-chevron-right dropdown-arrow"></i>
+            </a>
+            <ul class="submenu collapse" id="donationsSubmenu">
+                <li class="nav-item">
+                    <a href="manage_payment_accounts.php" class="nav-link">
+                        <i class="fas fa-university"></i>
+                        Payment Accounts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_donations.php" class="nav-link">
+                        <i class="fas fa-list-alt"></i>
+                        Donation List
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
+        <!-- Settings Dropdown -->
+        <li class="nav-item">
+            <a href="#settingsSubmenu" class="nav-link" data-bs-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-cog"></i>
+                Settings
+                <i class="fas fa-chevron-right dropdown-arrow"></i>
+            </a>
+            <ul class="submenu collapse" id="settingsSubmenu">
+                <li class="nav-item">
+                    <a href="manage_settings.php" class="nav-link">
+                        <i class="fas fa-sliders-h"></i>
+                        General Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_social_media.php" class="nav-link">
+                        <i class="fas fa-share-alt"></i>
+                        Social Media
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
     
@@ -213,3 +373,73 @@
         </div>
     </div>
 </div>
+
+<script>
+// Handle dropdown arrow rotation for all dropdowns
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggles = document.querySelectorAll('[data-bs-toggle="collapse"]');
+    
+    dropdownToggles.forEach(toggle => {
+        const dropdownArrow = toggle.querySelector('.dropdown-arrow');
+        
+        toggle.addEventListener('click', function() {
+            if (dropdownArrow) {
+                dropdownArrow.classList.toggle('rotated');
+            }
+        });
+    });
+    
+    // Auto-open if on submenu page
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Home submenu pages
+    if (currentPage === 'manage_banners.php' || currentPage === 'edit_about_history.php') {
+        const homeSubmenu = document.getElementById('homeSubmenu');
+        const homeToggle = document.querySelector('[href="#homeSubmenu"]');
+        homeSubmenu.classList.add('show');
+        if (homeToggle) {
+            homeToggle.querySelector('.dropdown-arrow').classList.add('rotated');
+        }
+    }
+    
+    // Homepage Sections submenu pages
+    if (['manage_features.php', 'manage_services.php', 'manage_programs.php', 'manage_events.php', 'manage_quotes.php'].includes(currentPage)) {
+        const homepageSubmenu = document.getElementById('homepageSubmenu');
+        const homepageToggle = document.querySelector('[href="#homepageSubmenu"]');
+        homepageSubmenu.classList.add('show');
+        if (homepageToggle) {
+            homepageToggle.querySelector('.dropdown-arrow').classList.add('rotated');
+        }
+    }
+    
+    // Donations submenu pages
+    if (currentPage === 'manage_payment_accounts.php' || currentPage === 'manage_donations.php') {
+        const donationsSubmenu = document.getElementById('donationsSubmenu');
+        const donationsToggle = document.querySelector('[href="#donationsSubmenu"]');
+        donationsSubmenu.classList.add('show');
+        if (donationsToggle) {
+            donationsToggle.querySelector('.dropdown-arrow').classList.add('rotated');
+        }
+    }
+    
+    // Settings submenu pages
+    if (['manage_settings.php', 'manage_social_media.php'].includes(currentPage)) {
+        const settingsSubmenu = document.getElementById('settingsSubmenu');
+        const settingsToggle = document.querySelector('[href="#settingsSubmenu"]');
+        settingsSubmenu.classList.add('show');
+        if (settingsToggle) {
+            settingsToggle.querySelector('.dropdown-arrow').classList.add('rotated');
+        }
+    }
+
+    // Blog System submenu pages
+    if (currentPage === 'manage_blog_posts.php') {
+        const blogSubmenu = document.getElementById('blogSubmenu');
+        const blogToggle = document.querySelector('[href="#blogSubmenu"]');
+        blogSubmenu.classList.add('show');
+        if (blogToggle) {
+            blogToggle.querySelector('.dropdown-arrow').classList.add('rotated');
+        }
+    }
+});
+</script>

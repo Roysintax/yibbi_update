@@ -14,14 +14,16 @@
                         <!-- Featured Event -->
                         <div class="event-top tri-shape-2 pattern-2">
                             <div class="event-top-thumb">
-                                <img src="<?php echo htmlspecialchars($events[0]['image']); ?>" alt="Upcoming-event">
+                                <a href="events-single.php?id=<?php echo $events[0]['id']; ?>">
+                                    <img src="<?php echo htmlspecialchars($events[0]['image']); ?>" alt="Upcoming-event">
+                                </a>
                             </div>
                             <div class="event-top-content">
                                 <div class="event-top-content-wrapper">
-                                    <h3><a href="#"><?php echo htmlspecialchars($events[0]['title']); ?></a></h3>
+                                    <h3><a href="events-single.php?id=<?php echo $events[0]['id']; ?>"><?php echo htmlspecialchars($events[0]['title']); ?></a></h3>
                                     <div class="date-count-wrapper">
                                         <ul class="lab-ul event-date">
-                                            <li><i class="icofont-calendar"></i> <span><?php echo htmlspecialchars($events[0]['date']); ?></span></li>
+                                            <li><i class="icofont-calendar"></i> <span><?php echo htmlspecialchars(date('F d, Y', strtotime($events[0]['event_date']))); ?></span></li>
                                             <li><i class="icofont-location-pin"></i> <span><?php echo htmlspecialchars($events[0]['location']); ?></span></li>
                                         </ul>
                                         <ul class="lab-ul event-count" data-date="<?php echo htmlspecialchars($events[0]['count_down_target'] ?? ''); ?>">
@@ -42,12 +44,14 @@
                                     <div class="event-item lab-item">
                                         <div class="lab-inner">
                                             <div class="lab-thumb">
-                                                <img src="<?php echo htmlspecialchars($events[$i]['image']); ?>" alt="event-image">
+                                                <a href="events-single.php?id=<?php echo $events[$i]['id']; ?>">
+                                                    <img src="<?php echo htmlspecialchars($events[$i]['image']); ?>" alt="event-image">
+                                                </a>
                                             </div>
                                             <div class="lab-content">
-                                                <h5><a href="#"><?php echo htmlspecialchars($events[$i]['title']); ?></a></h5>
+                                                <h5><a href="events-single.php?id=<?php echo $events[$i]['id']; ?>"><?php echo htmlspecialchars($events[$i]['title']); ?></a></h5>
                                                 <ul class="lab-ul event-date">
-                                                    <li><i class="icofont-calendar"></i> <span><?php echo htmlspecialchars($events[$i]['date']); ?></span></li>
+                                                    <li><i class="icofont-calendar"></i> <span><?php echo htmlspecialchars(date('F d, Y', strtotime($events[$i]['event_date']))); ?></span></li>
                                                     <li><i class="icofont-location-pin"></i> <span><?php echo htmlspecialchars($events[$i]['location']); ?></span></li>
                                                 </ul>
                                             </div>

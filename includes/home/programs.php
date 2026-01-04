@@ -8,7 +8,7 @@
                             <h5>Help The Poor</h5>
                             <h2>Donations For The Nobel Causes</h2>
                             <p>Give the best quality of security systems and facility of latest technology for the people get awesome.</p>
-                            <a href="#" class="lab-btn">See All Causes <i class="icofont-heart-alt"></i></a>
+                            <a href="programs.php" class="lab-btn">See All Causes <i class="icofont-heart-alt"></i></a>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,8 @@
                                                     <div class="lab-thumb-content">
                                                         <div class="progress-item">
                                                             <ul class="progress-item-status lab-ul d-flex justify-content-between mb-2">
-                                                                <li>Raised<span> <?php echo htmlspecialchars($program['raised_amount']); ?></span></li>
-                                                                <li>Gold<span> <?php echo htmlspecialchars($program['goal_amount']); ?></span></li>
+                                                                <li>Raised<span> $<?php echo number_format($program['amount_raised'], 0); ?></span></li>
+                                                                <li>Goal<span> $<?php echo number_format($program['target_amount'], 0); ?></span></li>
                                                             </ul>
                                                             <div class="progress-bar-wrapper progress" data-percent="<?php echo $program['percentage']; ?>%">
                                                                 <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="lab-content">
-                                                    <span><?php echo htmlspecialchars($program['subtitle']); ?></span>
+                                                    <span><?php echo htmlspecialchars($program['category'] ?? 'Program'); ?></span>
                                                     <h5><a href="#"><?php echo htmlspecialchars($program['title']); ?></a></h5>
                                                 </div>
                                             </div>

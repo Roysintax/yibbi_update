@@ -2,7 +2,7 @@
 // ========================================
 // Konfigurasi Database PDO & Settings
 // ========================================
-require_once 'admin/config/database.php';
+require_once 'config/database.php';
 
 // Settings (untuk informasi header & footer)
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
@@ -134,7 +134,7 @@ $next_post = $stmt->fetch();
 			<div class="page-header-content-area">
 				<h4 class="ph-title"><?= htmlspecialchars($post['title']) ?></h4>
 				<ul class="lab-ul">
-					<li><a href="index.php">Home</a></li>
+					<li><a href="assets/x.php">Home</a></li>
 					<li><a href="blog.php">Blog</a></li>
 					<li><a class="active"><?= htmlspecialchars($post['title']) ?></a></li>
 				</ul>

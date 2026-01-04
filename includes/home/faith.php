@@ -16,10 +16,10 @@
                                 <div class="lab-item faith-item tri-shape-1 pattern-2">
                                     <div class="lab-inner d-flex align-items-center">
                                         <div class="lab-thumb">
-                                            <img src="<?php echo htmlspecialchars($faith['image']); ?>" alt="faith-image">
+                                            <img src="<?php echo htmlspecialchars($faith['icon']); ?>" alt="faith-image">
                                         </div>
                                         <div class="lab-content">
-                                            <h4><?php echo htmlspecialchars($faith['title']); ?> <span>(<?php echo htmlspecialchars($faith['subtitle']); ?>)</span></h4>
+                                            <h4><?php echo htmlspecialchars($faith['title']); ?></h4>
                                             <p><?php echo htmlspecialchars($faith['description']); ?></p>
                                         </div>
                                     </div>
